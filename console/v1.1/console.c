@@ -39,7 +39,6 @@ BOOL WINAPI console_init(VOID)
 VOID WINAPI console_deinit(VOID)
 {
 	_console_set_color(__CONSOLE_COLOR_DEFAULT);
-	console_clear_screen();
 
 	_console_on_key_event = NULL;
 	_console_on_mouse_event = NULL;
@@ -499,10 +498,10 @@ BOOL WINAPI console_get_key_pressed(VOID)
 
 VOID WINAPI console_set_input_event_handlers(VOID WINAPI (*on_key_event)(KEY_EVENT_RECORD*), VOID WINAPI (*on_mouse_event)(MOUSE_EVENT_RECORD*), VOID WINAPI (*on_window_buffer_size_event)(WINDOW_BUFFER_SIZE_RECORD*))
 {
-	_console_on_key_event = on_key_event;
-	_console_on_mouse_event = on_mouse_event;
-	_console_on_window_buffer_size_event = on_window_buffer_size_event;
-	
+	_console_on_key_event = (VOID*) on_key_event;
+	_console_on_mouse_event = (VOID*) on_mouse_event;
+	_console_on_window_buffer_size_event = (VOID*) on_window_buffer_size_event;
+
 	return;
 }
 
