@@ -15,12 +15,12 @@
 #include <stdio.h>
 
 #ifdef __USE_UTF16
-#define __SPRINTF(output, size, input, ...) swprintf_s(output, size, input, ## __VA_ARGS__)
+#define __SPRINTF(output, size, input, ...) swprintf(output, size, input, ## __VA_ARGS__)
 #define __STRTOINT32(str) _wtol(str)
 #define __STRTOINT64(str) _wtoi64(str)
 #define __STRTODOUBLE(str) _wtof(str)
 #else
-#define __SPRINTF(output, size, input, ...) sprintf_s(output, size, input, ## __VA_ARGS__)
+#define __SPRINTF(output, size, input, ...) snprintf(output, size, input, ## __VA_ARGS__)
 #define __STRTOINT32(str) atol(str)
 #define __STRTOINT64(str) _atoi64(str)
 #define __STRTODOUBLE(str) atof(str)
