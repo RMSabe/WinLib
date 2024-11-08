@@ -14,6 +14,10 @@
 
 #include "globldef.h"
 
+#ifdef __DOSWIN
+#error "console.h is not supported on DOS based Windows."
+#endif
+
 //Internal Windows Console API definitions
 
 #define __CONSOLE_TEXTCOLOR_BLACK (0U)
